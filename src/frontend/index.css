@@ -1,0 +1,201 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap');
+
+@layer base {
+  :root {
+    --radius: 0.75rem;
+
+    /* Deep navy + coral/orange palette */
+    --background: 0.97 0.008 240;
+    --foreground: 0.18 0.04 255;
+    --card: 1 0 0;
+    --card-foreground: 0.18 0.04 255;
+    --popover: 1 0 0;
+    --popover-foreground: 0.18 0.04 255;
+    --primary: 0.24 0.09 255;
+    --primary-foreground: 0.98 0 0;
+    --secondary: 0.93 0.02 240;
+    --secondary-foreground: 0.24 0.09 255;
+    --muted: 0.93 0.01 240;
+    --muted-foreground: 0.52 0.04 255;
+    --accent: 0.65 0.22 35;
+    --accent-foreground: 1 0 0;
+    --destructive: 0.50 0.22 27;
+    --destructive-foreground: 0.98 0 0;
+    --border: 0.88 0.02 240;
+    --input: 0.88 0.02 240;
+    --ring: 0.65 0.22 35;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.985 0 0;
+    --sidebar-foreground: 0.145 0 0;
+    --sidebar-primary: 0.205 0 0;
+    --sidebar-primary-foreground: 0.985 0 0;
+    --sidebar-accent: 0.97 0 0;
+    --sidebar-accent-foreground: 0.205 0 0;
+    --sidebar-border: 0.922 0 0;
+    --sidebar-ring: 0.708 0 0;
+
+    /* Brand colors as direct CSS variables */
+    --navy-900: oklch(0.18 0.09 255);
+    --navy-800: oklch(0.22 0.08 255);
+    --navy-700: oklch(0.27 0.07 255);
+    --navy-600: oklch(0.33 0.06 255);
+    --coral-500: oklch(0.65 0.22 35);
+    --coral-400: oklch(0.72 0.20 35);
+    --coral-600: oklch(0.58 0.22 30);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .font-body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
+
+/* Fade-up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.7s ease-out forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+.animate-delay-400 { animation-delay: 0.4s; }
+.animate-delay-500 { animation-delay: 0.5s; }
+.animate-delay-600 { animation-delay: 0.6s; }
+.animate-delay-700 { animation-delay: 0.7s; }
+.animate-delay-800 { animation-delay: 0.8s; }
+
+/* Scroll-triggered animation: hidden until revealed */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal.delay-1 { transition-delay: 0.1s; }
+.reveal.delay-2 { transition-delay: 0.2s; }
+.reveal.delay-3 { transition-delay: 0.3s; }
+.reveal.delay-4 { transition-delay: 0.4s; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.revealed,
+  .animate-fade-up,
+  .animate-fade-in,
+  .animate-float {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Hero overlay gradient */
+.hero-overlay {
+  background: linear-gradient(
+    to bottom,
+    oklch(0.18 0.09 255 / 0.55) 0%,
+    oklch(0.18 0.09 255 / 0.70) 50%,
+    oklch(0.18 0.09 255 / 0.85) 100%
+  );
+}
+
+/* Coral gradient for CTA sections */
+.coral-gradient {
+  background: linear-gradient(135deg, oklch(0.62 0.22 28) 0%, oklch(0.68 0.20 42) 100%);
+}
+
+/* Navy gradient */
+.navy-gradient {
+  background: linear-gradient(135deg, oklch(0.17 0.10 258) 0%, oklch(0.22 0.08 245) 100%);
+}
+
+/* Card hover states */
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 20px 60px oklch(0.18 0.09 255 / 0.15);
+}
+
+/* Star rating colors */
+.star-filled {
+  color: oklch(0.82 0.18 85);
+}
